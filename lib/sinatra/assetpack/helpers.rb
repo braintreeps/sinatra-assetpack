@@ -44,7 +44,7 @@ module Sinatra
         pack = settings.assets.packages["#{name}.#{type}"]
         return ""  unless pack
 
-        if settings.environment == :production
+        if settings.assets.environments.include?(settings.environment)
           pack.to_production_html request.script_name, options
         else
           pack.to_development_html request.script_name, options
